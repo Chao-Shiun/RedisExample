@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using RedisWebAPI.DAL;
+using RedisWebAPI.DAL.Interface;
 using RedisWebAPI.Model;
 
 namespace RedisWebAPI
@@ -28,6 +30,7 @@ namespace RedisWebAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.Configure<RedisSetting>(Configuration.GetSection("RedisSettings"));
+            services.AddSingleton<IAccessInteface,RedisTools>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
