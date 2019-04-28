@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.AspNetCore.Mvc;
 using RedisWebAPI.DAL.Interface;
 using RedisWebAPI.Model;
 
@@ -24,6 +18,13 @@ namespace RedisWebAPI.Controllers
         public string GetConnectionString()
         {
             return "test";
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public void SaveString(SaveStringModel model)
+        {
+            dbTools.StringSet(model.Key, model.Value);
         }
     }
 }
